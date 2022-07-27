@@ -1,0 +1,473 @@
+{
+	"info": {
+		"_postman_id": "aa6789fc-642b-433c-8f14-1c33e751d72d",
+		"name": "Auction API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Token auction",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "71197ea9-0f67-497c-aa15-5adcbf411c4b",
+						"exec": [
+							"var response = JSON.parse(responseBody);",
+							"pm.environment.set(\"ssoToken\", response.access_token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Basic Y2xpZW50X2F1Y3Rpb25fYXBpOmNsaWVudF9hdWN0aW9uX2FwaQ=="
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "scope",
+							"value": "auction_api",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "username",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{ssoUrl}}/connect/token",
+					"host": [
+						"{{ssoUrl}}"
+					],
+					"path": [
+						"connect",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Auctions by closeBidding",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "16179a95-74ef-4607-8c00-0efd28641b8c",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ssoToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/xml",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{publicURL}}/auctions?closeBiddingFrom=2019-09-20T10:00:00Z&closeBiddingTo=2019-09-21T10:00:00Z",
+					"host": [
+						"{{publicURL}}"
+					],
+					"path": [
+						"auctions"
+					],
+					"query": [
+						{
+							"key": "closeBiddingFrom",
+							"value": "2019-09-20T10:00:00Z"
+						},
+						{
+							"key": "closeBiddingTo",
+							"value": "2019-09-21T10:00:00Z"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Auctions Orders",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "1343177d-c993-4f0e-9768-883374fc4505",
+						"exec": [
+							"//pm.environment.set(\"auctionIdExternal\",\"CWE_H_DA_1-20190902\")"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ssoToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{publicURL}}/auctions/{{auctionIdExternal}}/orders",
+					"host": [
+						"{{publicURL}}"
+					],
+					"path": [
+						"auctions",
+						"{{auctionIdExternal}}",
+						"orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Auctions Trades",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "14c5c639-f763-425a-a532-6244ec90066c",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ssoToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{publicURL}}/auctions/{{auctionIdExternal}}/trades",
+					"host": [
+						"{{publicURL}}"
+					],
+					"path": [
+						"auctions",
+						"{{auctionIdExternal}}",
+						"trades"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BlockOrder submit",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ssoToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"auctionId\": \"CWE_H_DA_1-20190828\",\n  \"portfolio\": \"PORTFOLIO NAME\",\n  \"areaCode\": \"FR\",\n  \"blocks\":\n   [ { \"periods\":\n        [ { \"contractId\": \"CWE_H_DA_1-20190829-03\", \"volume\": 142.5 },\n          { \"contractId\": \"CWE_H_DA_1-20190829-04\", \"volume\": 141.1 },\n          { \"contractId\": \"CWE_H_DA_1-20190829-05\", \"volume\": 139.7 },\n          { \"contractId\": \"CWE_H_DA_1-20190829-06\", \"volume\": 138.2 },\n          { \"contractId\": \"CWE_H_DA_1-20190829-07\", \"volume\": 136.8 },\n          { \"contractId\": \"CWE_H_DA_1-20190829-08\", \"volume\": 135.4 },\n          { \"contractId\": \"CWE_H_DA_1-20190829-09\", \"volume\": 134 },\n          { \"contractId\": \"CWE_H_DA_1-20190829-10\", \"volume\": 132.5 },\n          { \"contractId\": \"CWE_H_DA_1-20190829-11\", \"volume\": 131.1 },\n          { \"contractId\": \"CWE_H_DA_1-20190829-12\", \"volume\": 129.7 }],\n       \"minimumAcceptanceRatio\": 1,\n       \"name\": \"ProfileBuyBlock0\",\n       \"price\": 63.7 }\n    ]\n}"
+				},
+				"url": {
+					"raw": "{{publicURL}}/blockorders",
+					"host": [
+						"{{publicURL}}"
+					],
+					"path": [
+						"blockorders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BlockOrder modify",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "dc995d8a-bc18-4d72-a749-597c3620ba14",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "62003e37-69f7-4d5d-93e4-715b06eb6a5b",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ssoToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \r\n  \"blocks\": [\r\n        {\r\n            \"name\": \"Block 1\",\r\n            \"price\": 32.20,\r\n            \"minimumAcceptanceRatio\": 0.670,\r\n            \"linkedTo\": null,\r\n            \"exclusiveGroup\": null,\r\n            \"periods\": [\r\n                {\r\n                    \"contractId\": \"CWE_H_DA_1-20190816-02\",\r\n                    \"volume\": 183.2\r\n                },\r\n                {\r\n                    \"contractId\": \"CWE_H_DA_1-20190816-03\",\r\n                    \"volume\": 183.2\r\n                },\r\n                {\r\n                    \"contractId\": \"CWE_H_DA_1-20190816-04\",\r\n                    \"volume\": 183.2\r\n                },\r\n                {\r\n                    \"contractId\": \"CWE_H_DA_1-20190816-05\",\r\n                    \"volume\": 183.2\r\n                },\r\n                {\r\n                    \"contractId\": \"CWE_H_DA_1-20190816-06\",\r\n                    \"volume\": 183.2\r\n                },\r\n                {\r\n                    \"contractId\": \"CWE_H_DA_1-20190816-07\",\r\n                    \"volume\": 183.2\r\n                },\r\n                {\r\n                    \"contractId\": \"CWE_H_DA_1-20190816-08\",\r\n                    \"volume\": 183.2\r\n                },\r\n                {\r\n                    \"contractId\": \"CWE_H_DA_1-20190816-09\",\r\n                    \"volume\": 183.2\r\n                },\r\n                {\r\n                    \"contractId\": \"CWE_H_DA_1-20190816-10\",\r\n                    \"volume\": 183.2\r\n                },\r\n                {\r\n                    \"contractId\": \"CWE_H_DA_1-20190816-11\",\r\n                    \"volume\": 183.2\r\n                },\r\n                {\r\n                    \"contractId\": \"CWE_H_DA_1-20190816-12\",\r\n                    \"volume\": 183.2\r\n                },\r\n                {\r\n                    \"contractId\": \"CWE_H_DA_1-20190816-13\",\r\n                    \"volume\": 183.2\r\n                },\r\n                {\r\n                    \"contractId\": \"CWE_H_DA_1-20190816-14\",\r\n                    \"volume\": 183.2\r\n                },\r\n                {\r\n                    \"contractId\": \"CWE_H_DA_1-20190816-15\",\r\n                    \"volume\": 183.2\r\n                },\r\n                {\r\n                    \"contractId\": \"CWE_H_DA_1-20190816-16\",\r\n                    \"volume\": 183.2\r\n                },\r\n                {\r\n                    \"contractId\": \"CWE_H_DA_1-20190816-17\",\r\n                    \"volume\": 183.2\r\n                },\r\n                {\r\n                    \"contractId\": \"CWE_H_DA_1-20190816-18\",\r\n                    \"volume\": 183.2\r\n                },\r\n                {\r\n                    \"contractId\": \"CWE_H_DA_1-20190816-19\",\r\n                    \"volume\": 183.2\r\n                },\r\n                {\r\n                    \"contractId\": \"CWE_H_DA_1-20190816-20\",\r\n                    \"volume\": 183.2\r\n                },\r\n                {\r\n                    \"contractId\": \"CWE_H_DA_1-20190816-21\",\r\n                    \"volume\": 183.2\r\n                },\r\n                {\r\n                    \"contractId\": \"CWE_H_DA_1-20190816-22\",\r\n                    \"volume\": 183.2\r\n                },\r\n                {\r\n                    \"contractId\": \"CWE_H_DA_1-20190816-23\",\r\n                    \"volume\": 183.2\r\n                },\r\n                {\r\n                    \"contractId\": \"CWE_H_DA_1-20190816-24\",\r\n                    \"volume\": 183.2\r\n                }\r\n            ]\r\n        },\r\n        {\r\n        \t\"name\": \"Block 2\",\r\n            \"price\": 71.90,\r\n            \"minimumAcceptanceRatio\": 0.500,\r\n            \"linkedTo\": null,\r\n            \"exclusiveGroup\": null,\r\n            \"periods\": [\r\n                {\r\n                    \"contractId\": \"CWE_H_DA_1-20190816-02\",\r\n                    \"volume\": -128.8\r\n                },\r\n                {\r\n                    \"contractId\": \"CWE_H_DA_1-20190816-03\",\r\n                    \"volume\": -128.8\r\n                },\r\n                {\r\n                    \"contractId\": \"CWE_H_DA_1-20190816-04\",\r\n                    \"volume\": -128.8\r\n                },\r\n                {\r\n                    \"contractId\": \"CWE_H_DA_1-20190816-05\",\r\n                    \"volume\": -128.8\r\n                },\r\n                {\r\n                    \"contractId\": \"CWE_H_DA_1-20190816-06\",\r\n                    \"volume\": -128.8\r\n                },\r\n                {\r\n                    \"contractId\": \"CWE_H_DA_1-20190816-07\",\r\n                    \"volume\": -128.8\r\n                },\r\n                {\r\n                    \"contractId\": \"CWE_H_DA_1-20190816-08\",\r\n                    \"volume\": -128.8\r\n                },\r\n                {\r\n                    \"contractId\": \"CWE_H_DA_1-20190816-09\",\r\n                    \"volume\": -128.8\r\n                },\r\n                {\r\n                    \"contractId\": \"CWE_H_DA_1-20190816-10\",\r\n                    \"volume\": -128.8\r\n                },\r\n                {\r\n                    \"contractId\": \"CWE_H_DA_1-20190816-11\",\r\n                    \"volume\": -128.8\r\n                },\r\n                {\r\n                    \"contractId\": \"CWE_H_DA_1-20190816-12\",\r\n                    \"volume\": -128.8\r\n                },\r\n                {\r\n                    \"contractId\": \"CWE_H_DA_1-20190816-13\",\r\n                    \"volume\": -128.8\r\n                },\r\n                {\r\n                    \"contractId\": \"CWE_H_DA_1-20190816-14\",\r\n                    \"volume\": -128.8\r\n                },\r\n                {\r\n                    \"contractId\": \"CWE_H_DA_1-20190816-15\",\r\n                    \"volume\": -128.8\r\n                },\r\n                {\r\n                    \"contractId\": \"CWE_H_DA_1-20190816-16\",\r\n                    \"volume\": -128.8\r\n                },\r\n                {\r\n                    \"contractId\": \"CWE_H_DA_1-20190816-17\",\r\n                    \"volume\": -128.8\r\n                },\r\n                {\r\n                    \"contractId\": \"CWE_H_DA_1-20190816-18\",\r\n                    \"volume\": -128.8\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"name\": \"🐵 🙈 🙉 🙊\",\r\n            \"price\": 27.00,\r\n            \"minimumAcceptanceRatio\": 0.560,\r\n            \"linkedTo\": null,\r\n            \"exclusiveGroup\": null,\r\n            \"periods\": [\r\n                {\r\n                    \"contractId\": \"CWE_H_DA_1-20190816-02\",\r\n                    \"volume\": 148.8\r\n                },\r\n                {\r\n                    \"contractId\": \"CWE_H_DA_1-20190816-03\",\r\n                    \"volume\": 148.8\r\n                },\r\n                {\r\n                    \"contractId\": \"CWE_H_DA_1-20190816-04\",\r\n                    \"volume\": 148.8\r\n                },\r\n                {\r\n                    \"contractId\": \"CWE_H_DA_1-20190816-05\",\r\n                    \"volume\": 148.8\r\n                },\r\n                {\r\n                    \"contractId\": \"CWE_H_DA_1-20190816-06\",\r\n                    \"volume\": 148.8\r\n                },\r\n                {\r\n                    \"contractId\": \"CWE_H_DA_1-20190816-07\",\r\n                    \"volume\": 148.8\r\n                },\r\n                {\r\n                    \"contractId\": \"CWE_H_DA_1-20190816-08\",\r\n                    \"volume\": 148.8\r\n                },\r\n                {\r\n                    \"contractId\": \"CWE_H_DA_1-20190816-09\",\r\n                    \"volume\": 148.8\r\n                },\r\n                {\r\n                    \"contractId\": \"CWE_H_DA_1-20190816-10\",\r\n                    \"volume\": 148.8\r\n                },\r\n                {\r\n                    \"contractId\": \"CWE_H_DA_1-20190816-11\",\r\n                    \"volume\": 148.8\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}"
+				},
+				"url": {
+					"raw": "{{publicURL}}/blockorders/{{orderId}}",
+					"host": [
+						"{{publicURL}}"
+					],
+					"path": [
+						"blockorders",
+						"{{orderId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BlockOrder by Id",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "90b6dd23-a974-4f75-8f29-0daa46f95d47",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ssoToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{publicURL}}/blockorders/{{orderId}}",
+					"host": [
+						"{{publicURL}}"
+					],
+					"path": [
+						"blockorders",
+						"{{orderId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CurveOrder submit",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ssoToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \r\n  \"auctionId\": \"CWE_H_DA_1-20190613\",\r\n  \"portfolio\": \"PORTFOLIO NAME\",\r\n  \"areaCode\": \"AT\",\r\n  \"curves\":[\r\n        {\r\n            \"contractId\": \"CWE_H_DA_1-20190614-01\",\r\n            \"curvePoints\": [\r\n                {\r\n                    \"price\": -500,\r\n                    \"volume\": 100\r\n                },\r\n                {\r\n                    \"price\": -100,\r\n                    \"volume\": 50\r\n                },\r\n                {\r\n                    \"price\": 3000,\r\n                    \"volume\": 0\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}"
+				},
+				"url": {
+					"raw": "{{publicURL}}/curveorders",
+					"host": [
+						"{{publicURL}}"
+					],
+					"path": [
+						"curveorders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CurveOrder modify",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ssoToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"curves\": [   ]\n}"
+				},
+				"url": {
+					"raw": "{{publicURL}}/curveorders/{{orderId}}",
+					"host": [
+						"{{publicURL}}"
+					],
+					"path": [
+						"curveorders",
+						"{{orderId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CurveOrder By Id",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "1c7d2cd6-e8a1-4781-abae-cb66bb24fcee",
+						"exec": [
+							"//pm.environment.set(\"orderId\", \"7AF2E6AB-515B-48C8-868E-B4AAE7344A95\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ssoToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{publicURL}}/curveorders/{{orderId}}",
+					"host": [
+						"{{publicURL}}"
+					],
+					"path": [
+						"curveorders",
+						"{{orderId}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
