@@ -12,6 +12,6 @@
 6. Execute the query. Received token will be saved into Postman variable and added to any other request automatically.
 7. Start calling other request. 
 
-Other variables available: **auctionIdExternal**, **orderId**. See auction API Postman.png or read doecumentation for reference.
+Other variables available: **auctionIdExternal**, **orderId**. See auction API Postman.png or read documentation for reference.
 
 https://learning.getpostman.com/docs/postman/environments_and_globals/variables
