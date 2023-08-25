@@ -1,8 +1,9 @@
 {
 	"info": {
-		"_postman_id": "aa6789fc-642b-433c-8f14-1c33e751d72d",
+		"_postman_id": "81d54a98-f7cb-4100-911a-5c66ba776bb3",
 		"name": "Auction API",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24249697"
 	},
 	"item": [
 		{
@@ -11,7 +12,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "71197ea9-0f67-497c-aa15-5adcbf411c4b",
 						"exec": [
 							"var response = JSON.parse(responseBody);",
 							"pm.environment.set(\"ssoToken\", response.access_token);"
@@ -53,12 +53,12 @@
 						},
 						{
 							"key": "username",
-							"value": "username",
+							"value": "USERNAME",
 							"type": "text"
 						},
 						{
 							"key": "password",
-							"value": "password",
+							"value": "PASSWORD",
 							"type": "text"
 						}
 					]
@@ -82,7 +82,6 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "16179a95-74ef-4607-8c00-0efd28641b8c",
 						"exec": [
 							""
 						],
@@ -137,7 +136,6 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "1343177d-c993-4f0e-9768-883374fc4505",
 						"exec": [
 							"//pm.environment.set(\"auctionIdExternal\",\"CWE_H_DA_1-20190902\")"
 						],
@@ -173,12 +171,130 @@
 			"response": []
 		},
 		{
+			"name": "Auctions Prices",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"//pm.environment.set(\"auctionIdExternal\",\"Test_CWE_H_DA_1-20230823\")"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ssoToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{publicURL}}/auctions/{{auctionIdExternal}}/prices",
+					"host": [
+						"{{publicURL}}"
+					],
+					"path": [
+						"auctions",
+						"{{auctionIdExternal}}",
+						"prices"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Auctions Portfolio Volumes",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"//pm.environment.set(\"auctionIdExternal\",\"Test_CWE_H_DA_1-20230823\")"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ssoToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{publicURL}}/auctions/{{auctionIdExternal}}/portfoliovolumes",
+					"host": [
+						"{{publicURL}}"
+					],
+					"path": [
+						"auctions",
+						"{{auctionIdExternal}}",
+						"portfoliovolumes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Auctions Contracts",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"//pm.environment.set(\"auctionIdExternal\",\"Test_CWE_H_DA_1-20230823\")"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ssoToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{publicURL}}/auctions/{{auctionIdExternal}}",
+					"host": [
+						"{{publicURL}}"
+					],
+					"path": [
+						"auctions",
+						"{{auctionIdExternal}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Auctions Trades",
 			"event": [
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "14c5c639-f763-425a-a532-6244ec90066c",
 						"exec": [
 							""
 						],
@@ -257,7 +373,6 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "dc995d8a-bc18-4d72-a749-597c3620ba14",
 						"exec": [
 							""
 						],
@@ -267,7 +382,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "62003e37-69f7-4d5d-93e4-715b06eb6a5b",
 						"exec": [
 							""
 						],
@@ -318,7 +432,6 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "90b6dd23-a974-4f75-8f29-0daa46f95d47",
 						"exec": [
 							""
 						],
@@ -435,7 +548,6 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "1c7d2cd6-e8a1-4781-abae-cb66bb24fcee",
 						"exec": [
 							"//pm.environment.set(\"orderId\", \"7AF2E6AB-515B-48C8-868E-B4AAE7344A95\");"
 						],
