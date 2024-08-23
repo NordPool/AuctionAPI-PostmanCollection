@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "81d54a98-f7cb-4100-911a-5c66ba776bb3",
+		"_postman_id": "2418273b-5fac-4d05-aa35-2ecc1a99f393",
 		"name": "Auction API",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "24249697"
+		"_exporter_id": "1750298"
 	},
 	"item": [
 		{
@@ -28,14 +28,13 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"type": "text",
-						"value": "Basic Y2xpZW50X2F1Y3Rpb25fYXBpOmNsaWVudF9hdWN0aW9uX2FwaQ=="
+						"value": "Basic Y2xpZW50X2F1Y3Rpb25fYXBpOmNsaWVudF9hdWN0aW9uX2FwaQ==",
+						"type": "text"
 					},
 					{
 						"key": "Content-Type",
-						"name": "Content-Type",
-						"type": "text",
-						"value": "application/x-www-form-urlencoded"
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
 					}
 				],
 				"body": {
@@ -346,7 +345,6 @@
 				"header": [
 					{
 						"key": "Content-Type",
-						"name": "Content-Type",
 						"value": "application/json",
 						"type": "text"
 					}
@@ -404,7 +402,6 @@
 				"header": [
 					{
 						"key": "Content-Type",
-						"name": "Content-Type",
 						"value": "application/json",
 						"type": "text"
 					}
@@ -482,9 +479,8 @@
 				"header": [
 					{
 						"key": "Content-Type",
-						"name": "Content-Type",
-						"type": "text",
-						"value": "application/json"
+						"value": "application/json",
+						"type": "text"
 					}
 				],
 				"body": {
@@ -520,9 +516,8 @@
 				"header": [
 					{
 						"key": "Content-Type",
-						"name": "Content-Type",
-						"type": "text",
-						"value": "application/json"
+						"value": "application/json",
+						"type": "text"
 					}
 				],
 				"body": {
@@ -576,6 +571,51 @@
 					"path": [
 						"curveorders",
 						"{{orderId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reasonability Results",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"//pm.environment.set(\"orderId\", \"orderId\");\r",
+							"//pm.environment.set(\"externalAuctionId\", \"externalAuctionId\");\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ssoToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{publicURL}}/auctions/{{externalAuctionId}}/orders/{{orderId}}/results",
+					"host": [
+						"{{publicURL}}"
+					],
+					"path": [
+						"auctions",
+						"{{externalAuctionId}}",
+						"orders",
+						"{{orderId}}",
+						"results"
 					]
 				}
 			},
