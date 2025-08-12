@@ -330,6 +330,88 @@
 			"response": []
 		},
 		{
+			"name": "Auctions cancel all",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ssoToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{publicURL}}/auctions/{{auctionIdExternal}}/cancelall",
+					"host": [
+						"{{publicURL}}"
+					],
+					"path": [
+						"auctions",
+						"{{auctionIdExternal}}",
+						"cancelall"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Auctions cancel by portfolios",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ssoToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{publicURL}}/auctions/{{auctionIdExternal}}/cancel",
+					"host": [
+						"{{publicURL}}"
+					],
+					"path": [
+						"auctions",
+						"{{auctionIdExternal}}",
+						"cancel"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "BlockOrder submit",
 			"request": {
 				"auth": {
@@ -466,6 +548,47 @@
 			"response": []
 		},
 		{
+			"name": "BlockOrder versions",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ssoToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{publicURL}}/blockorders/{{orderId}}/versions",
+					"host": [
+						"{{publicURL}}"
+					],
+					"path": [
+						"blockorders",
+						"{{orderId}}",
+						"versions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "CurveOrder submit",
 			"request": {
 				"auth": {
@@ -576,6 +699,90 @@
 					"path": [
 						"curveorders",
 						"{{orderId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CurveOrder versions",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"//pm.environment.set(\"orderId\", \"7AF2E6AB-515B-48C8-868E-B4AAE7344A95\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ssoToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{publicURL}}/curveorders/{{orderId}}",
+					"host": [
+						"{{publicURL}}"
+					],
+					"path": [
+						"curveorders",
+						"{{orderId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reasonability Results",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"//pm.environment.set(\"orderId\", \"orderId\");\r",
+							"//pm.environment.set(\"externalAuctionId\", \"externalAuctionId\");\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ssoToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{publicURL}}/auctions/{{externalAuctionId}}/orders/{{orderId}}/results",
+					"host": [
+						"{{publicURL}}"
+					],
+					"path": [
+						"auctions",
+						"{{externalAuctionId}}",
+						"orders",
+						"{{orderId}}",
+						"results"
 					]
 				}
 			},
