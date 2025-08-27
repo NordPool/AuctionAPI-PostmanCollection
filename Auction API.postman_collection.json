@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "2418273b-5fac-4d05-aa35-2ecc1a99f393",
+		"_postman_id": "3cf81594-ada1-40b2-9574-0e0111c2a4bb",
 		"name": "Auction API",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "1750298"
@@ -733,6 +733,162 @@
 					"path": [
 						"curveorders",
 						"{{orderId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LinkedEgOrder submit",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ssoToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"auctionId\": \"CWE_H_DA_1-20190828\",\n  \"portfolio\": \"PORTFOLIO NAME\",\n  \"areaCode\": \"FR\",\n  \"blocks\":\n   [ { \"periods\":\n        [ { \"contractId\": \"CWE_H_DA_1-20190829-03\", \"volume\": 142.5 },\n          { \"contractId\": \"CWE_H_DA_1-20190829-04\", \"volume\": 141.1 },\n          { \"contractId\": \"CWE_H_DA_1-20190829-05\", \"volume\": 139.7 },\n          { \"contractId\": \"CWE_H_DA_1-20190829-06\", \"volume\": 138.2 },\n          { \"contractId\": \"CWE_H_DA_1-20190829-07\", \"volume\": 136.8 },\n          { \"contractId\": \"CWE_H_DA_1-20190829-08\", \"volume\": 135.4 },\n          { \"contractId\": \"CWE_H_DA_1-20190829-09\", \"volume\": 134 },\n          { \"contractId\": \"CWE_H_DA_1-20190829-10\", \"volume\": 132.5 },\n          { \"contractId\": \"CWE_H_DA_1-20190829-11\", \"volume\": 131.1 },\n          { \"contractId\": \"CWE_H_DA_1-20190829-12\", \"volume\": 129.7 }],\n       \"minimumAcceptanceRatio\": 1,\n       \"name\": \"ProfileBuyBlock0\",\n       \"price\": 63.7 }\n    ]\n}"
+				},
+				"url": {
+					"raw": "{{publicURL}}/linkedegorders",
+					"host": [
+						"{{publicURL}}"
+					],
+					"path": [
+						"linkedegorders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LinkedEgOrder modify",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ssoToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"blocks\": [  \n        {\n            \"name\": \"Block 1\",\n            \"price\": 32.20,\n            \"minimumAcceptanceRatio\": 0.670,\n            \"linkedTo\": null,\n            \"exclusiveGroup\": \"EG1\",\n            \"periods\": [\n                {\n                    \"contractId\": \"CWE_H_DA_1-20190816-02\",\n                    \"volume\": 183.2\n                },\n                {\n                    \"contractId\": \"CWE_H_DA_1-20190816-03\",\n                    \"volume\": 183.2\n                },\n                {\n                    \"contractId\": \"CWE_H_DA_1-20190816-04\",\n                    \"volume\": 183.2\n                },\n                {\n                    \"contractId\": \"CWE_H_DA_1-20190816-05\",\n                    \"volume\": 183.2\n                },\n                {\n                    \"contractId\": \"CWE_H_DA_1-20190816-06\",\n                    \"volume\": 183.2\n                },\n                {\n                    \"contractId\": \"CWE_H_DA_1-20190816-07\",\n                    \"volume\": 183.2\n                },\n                {\n                    \"contractId\": \"CWE_H_DA_1-20190816-08\",\n                    \"volume\": 183.2\n                },\n                {\n                    \"contractId\": \"CWE_H_DA_1-20190816-09\",\n                    \"volume\": 183.2\n                },\n                {\n                    \"contractId\": \"CWE_H_DA_1-20190816-10\",\n                    \"volume\": 183.2\n                },\n                {\n                    \"contractId\": \"CWE_H_DA_1-20190816-11\",\n                    \"volume\": 183.2\n                },\n                {\n                    \"contractId\": \"CWE_H_DA_1-20190816-12\",\n                    \"volume\": 183.2\n                },\n                {\n                    \"contractId\": \"CWE_H_DA_1-20190816-13\",\n                    \"volume\": 183.2\n                },\n                {\n                    \"contractId\": \"CWE_H_DA_1-20190816-14\",\n                    \"volume\": 183.2\n                },\n                {\n                    \"contractId\": \"CWE_H_DA_1-20190816-15\",\n                    \"volume\": 183.2\n                },\n                {\n                    \"contractId\": \"CWE_H_DA_1-20190816-16\",\n                    \"volume\": 183.2\n                },\n                {\n                    \"contractId\": \"CWE_H_DA_1-20190816-17\",\n                    \"volume\": 183.2\n                },\n                {\n                    \"contractId\": \"CWE_H_DA_1-20190816-18\",\n                    \"volume\": 183.2\n                },\n                {\n                    \"contractId\": \"CWE_H_DA_1-20190816-19\",\n                    \"volume\": 183.2\n                },\n                {\n                    \"contractId\": \"CWE_H_DA_1-20190816-20\",\n                    \"volume\": 183.2\n                },\n                {\n                    \"contractId\": \"CWE_H_DA_1-20190816-21\",\n                    \"volume\": 183.2\n                },\n                {\n                    \"contractId\": \"CWE_H_DA_1-20190816-22\",\n                    \"volume\": 183.2\n                },\n                {\n                    \"contractId\": \"CWE_H_DA_1-20190816-23\",\n                    \"volume\": 183.2\n                },\n                {\n                    \"contractId\": \"CWE_H_DA_1-20190816-24\",\n                    \"volume\": 183.2\n                }\n            ]\n        },\n        {\n        \t\"name\": \"Child Block 1\",\n            \"price\": 71.90,\n            \"minimumAcceptanceRatio\": 0.500,\n            \"linkedTo\": \"Block 1\",\n            \"exclusiveGroup\": \"EG1\",\n            \"periods\": [\n                {\n                    \"contractId\": \"CWE_H_DA_1-20190816-02\",\n                    \"volume\": -128.8\n                },\n                {\n                    \"contractId\": \"CWE_H_DA_1-20190816-03\",\n                    \"volume\": -128.8\n                },\n                {\n                    \"contractId\": \"CWE_H_DA_1-20190816-04\",\n                    \"volume\": -128.8\n                },\n                {\n                    \"contractId\": \"CWE_H_DA_1-20190816-05\",\n                    \"volume\": -128.8\n                },\n                {\n                    \"contractId\": \"CWE_H_DA_1-20190816-06\",\n                    \"volume\": -128.8\n                },\n                {\n                    \"contractId\": \"CWE_H_DA_1-20190816-07\",\n                    \"volume\": -128.8\n                },\n                {\n                    \"contractId\": \"CWE_H_DA_1-20190816-08\",\n                    \"volume\": -128.8\n                },\n                {\n                    \"contractId\": \"CWE_H_DA_1-20190816-09\",\n                    \"volume\": -128.8\n                },\n                {\n                    \"contractId\": \"CWE_H_DA_1-20190816-10\",\n                    \"volume\": -128.8\n                },\n                {\n                    \"contractId\": \"CWE_H_DA_1-20190816-11\",\n                    \"volume\": -128.8\n                },\n                {\n                    \"contractId\": \"CWE_H_DA_1-20190816-12\",\n                    \"volume\": -128.8\n                },\n                {\n                    \"contractId\": \"CWE_H_DA_1-20190816-13\",\n                    \"volume\": -128.8\n                },\n                {\n                    \"contractId\": \"CWE_H_DA_1-20190816-14\",\n                    \"volume\": -128.8\n                },\n                {\n                    \"contractId\": \"CWE_H_DA_1-20190816-15\",\n                    \"volume\": -128.8\n                },\n                {\n                    \"contractId\": \"CWE_H_DA_1-20190816-16\",\n                    \"volume\": -128.8\n                },\n                {\n                    \"contractId\": \"CWE_H_DA_1-20190816-17\",\n                    \"volume\": -128.8\n                },\n                {\n                    \"contractId\": \"CWE_H_DA_1-20190816-18\",\n                    \"volume\": -128.8\n                }\n            ]\n        },\n        {\n            \"name\": \"Block 2\",\n            \"price\": 27.00,\n            \"minimumAcceptanceRatio\": 0.560,\n            \"linkedTo\": null,\n            \"exclusiveGroup\": \"EG2\",\n            \"periods\": [\n                {\n                    \"contractId\": \"CWE_H_DA_1-20190816-02\",\n                    \"volume\": 148.8\n                },\n                {\n                    \"contractId\": \"CWE_H_DA_1-20190816-03\",\n                    \"volume\": 148.8\n                },\n                {\n                    \"contractId\": \"CWE_H_DA_1-20190816-04\",\n                    \"volume\": 148.8\n                },\n                {\n                    \"contractId\": \"CWE_H_DA_1-20190816-05\",\n                    \"volume\": 148.8\n                },\n                {\n                    \"contractId\": \"CWE_H_DA_1-20190816-06\",\n                    \"volume\": 148.8\n                },\n                {\n                    \"contractId\": \"CWE_H_DA_1-20190816-07\",\n                    \"volume\": 148.8\n                },\n                {\n                    \"contractId\": \"CWE_H_DA_1-20190816-08\",\n                    \"volume\": 148.8\n                },\n                {\n                    \"contractId\": \"CWE_H_DA_1-20190816-09\",\n                    \"volume\": 148.8\n                },\n                {\n                    \"contractId\": \"CWE_H_DA_1-20190816-10\",\n                    \"volume\": 148.8\n                },\n                {\n                    \"contractId\": \"CWE_H_DA_1-20190816-11\",\n                    \"volume\": 148.8\n                }\n            ]\n        }\n    ]\n}"
+				},
+				"url": {
+					"raw": "{{publicURL}}/linkedegorders/{{orderId}}",
+					"host": [
+						"{{publicURL}}"
+					],
+					"path": [
+						"linkedegorders",
+						"{{orderId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LinkedEgOrder By Id",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"//pm.environment.set(\"orderId\", \"7AF2E6AB-515B-48C8-868E-B4AAE7344A95\");"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ssoToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{publicURL}}/linkedegorders/{{orderId}}",
+					"host": [
+						"{{publicURL}}"
+					],
+					"path": [
+						"linkedegorders",
+						"{{orderId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LinkedEgOrder versions",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{ssoToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{publicURL}}/linkedegorders/{{orderId}}/versions",
+					"host": [
+						"{{publicURL}}"
+					],
+					"path": [
+						"linkedegorders",
+						"{{orderId}}",
+						"versions"
 					]
 				}
 			},
